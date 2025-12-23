@@ -7,7 +7,7 @@ const videoSchema = new Schema<TVideoData>(
     name: { type: String, required: true },
     industry: { type: String },
     category: { type: String, required: true },
-    genres: { type: String, required: true }, //ধরন
+    genres: [{ type: String, required: true }], //ধরন
     videoPath: { type: String, required: true },
     thumbnail: { type: String, required: true },
     banner: { type: String, required: true },

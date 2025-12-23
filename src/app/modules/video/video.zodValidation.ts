@@ -1,11 +1,11 @@
 import z from "zod";
 
 export const videoValidationWithZod = z.object({
-  body: z.object({
+  videoData: z.object({
     name: z.string().trim(),
     industry: z.string().trim(),
     category: z.string().trim(),
-    genres: z.string().trim(), //ধরন
+    genres: z.array(z.string().trim()), //ধরন
     videoPath: z.string().trim().url(),
     thumbnail: z.string().trim().url(),
     banner: z.string().trim().url(),
