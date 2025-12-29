@@ -13,3 +13,7 @@ export const videoValidationWithZod = z.object({
     screenshots: z.array(z.string().trim().url()).optional(),
   }),
 });
+
+export const searchValidation = z.object({
+  name: z.string().trim().min(1),
+});
