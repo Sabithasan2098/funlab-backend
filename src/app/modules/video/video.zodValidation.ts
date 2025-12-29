@@ -11,6 +11,12 @@ export const videoValidationWithZod = z.object({
     banner: z.string().trim().url(),
     imdbRating: z.string().trim(),
     screenshots: z.array(z.string().trim().url()).optional(),
+    tvWeb: z.boolean(),
+    comic: z.boolean(),
+    dualAudio: z.boolean(),
+    hindiDubbed: z.boolean(),
+    web: z.boolean(),
+    oscar: z.boolean(),
   }),
 });
 

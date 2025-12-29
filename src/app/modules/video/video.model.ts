@@ -13,6 +13,12 @@ const videoSchema = new Schema<TVideoData>(
     banner: { type: String, required: true },
     imdbRating: { type: String },
     screenshots: [{ type: String }],
+    tv: { type: Boolean, required: true },
+    comic: { type: Boolean, required: true },
+    dualAudio: { type: Boolean, required: true },
+    hindiDubbed: { type: Boolean, required: true },
+    web: { type: Boolean, required: true },
+    oscar: { type: Boolean, required: true },
   },
   {
     timestamps: true,
