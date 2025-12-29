@@ -98,7 +98,7 @@ export const getSingleVideoByCategory = async (req: Request, res: Response) => {
     if (!searchTerm) {
       res.status(400).json({
         success: false,
-        message: "No videos",
+        message: "Please fill this search term",
       });
     }
 
