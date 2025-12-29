@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import {
   getAllVideoFromDB,
-  getSingleVideoByCategoryFromDB,
+  getVideoByCategoryFromDB,
   getSingleVideoByIdFromDB,
   getSingleVideoByNameFromDB,
   postVideoIntoDB,
@@ -91,7 +91,7 @@ export const getSingleVideoByName = async (req: Request, res: Response) => {
 };
 
 // get video by category-------------------->
-export const getSingleVideoByCategory = async (req: Request, res: Response) => {
+export const getVideoByCategory = async (req: Request, res: Response) => {
   try {
     const searchTerm = req.query.search as string;
 
@@ -102,7 +102,7 @@ export const getSingleVideoByCategory = async (req: Request, res: Response) => {
       });
     }
 
-    const result = await getSingleVideoByCategoryFromDB(searchTerm);
+    const result = await getVideoByCategoryFromDB(searchTerm);
     if (result.length) {
       res.status(200).json({
         success: true,

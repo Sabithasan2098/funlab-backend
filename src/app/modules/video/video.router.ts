@@ -1,7 +1,7 @@
 import express from "express";
 import {
   getAllVideo,
-  getSingleVideoByCategory,
+  getVideoByCategory,
   getSingleVideoById,
   getSingleVideoByName,
   postVideo,
@@ -17,7 +17,6 @@ const router = express.Router();
 router.post("/postVideo", validateRequest(videoValidationWithZod), postVideo);
 router.get("/getVideos", getAllVideo);
 router.get("/getVideo/:id", getSingleVideoById);
-router.get("/getVideo/:id", getSingleVideoById);
 router.get(
   "/getVideo",
   //   validateRequest(searchValidation),
@@ -26,7 +25,7 @@ router.get(
 router.get(
   "/getVideoByCategory",
   //   validateRequest(searchValidation),
-  getSingleVideoByCategory
+  getVideoByCategory
 );
 
 export const videoRoutes = router;

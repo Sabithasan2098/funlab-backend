@@ -45,7 +45,7 @@ export const getSingleVideoByNameFromDB = async (name: string) => {
 };
 
 // get single video by category-------->
-export const getSingleVideoByCategoryFromDB = async (category: string) => {
+export const getVideoByCategoryFromDB = async (category: string) => {
   const result = await videoModel.aggregate([
     {
       $match: {
