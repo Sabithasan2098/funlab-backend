@@ -5,7 +5,7 @@ export type TVideoSource = {
 };
 
 export type TVideo = {
-  source: TVideoSource;
+  sources: TVideoSource[];
   duration: number;
 };
 

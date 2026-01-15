@@ -22,7 +22,7 @@ const videoSourceSchema = new Schema<TVideoSource>(
 
 const videoTypeSchema = new Schema<TVideo>(
   {
-    source: videoSourceSchema,
+    sources: { type: [videoSourceSchema], required: true },
     duration: { type: Number, required: true },
   },
   { _id: false }
@@ -37,7 +37,7 @@ const videoSchema = new Schema<TVideoData>(
     genres: [{ type: String, required: true }], //ধরন
     releaseYear: { type: Number },
     language: [{ type: String }],
-    video: videoTypeSchema,
+    video: { type: videoTypeSchema, required: true },
     thumbnail: { type: String, required: true },
     banner: { type: String, required: true },
     imdbRating: { type: String },

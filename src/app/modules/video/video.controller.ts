@@ -5,6 +5,7 @@ import {
   getSingleVideoByIdFromDB,
   getSingleVideoByNameFromDB,
   postVideoIntoDB,
+  addVideoSources,
 } from "./video.service";
 
 // post a video-------------------------->
@@ -120,6 +121,30 @@ export const getVideoByCategory = async (req: Request, res: Response) => {
       success: false,
       message: "internal server is error",
       errorThing: error,
+    });
+  }
+};
+
+export const updateVideoSourceController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { movieId } = req.params;
+    const payload = req.body;
+
+    const update = await addVideoSources(movieId, payload);
+
+    res.status(200).json({
+      success: true,
+      message: "Video source update successfully",
+      data: update,
+    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+      message: err.message,
     });
   }
 };

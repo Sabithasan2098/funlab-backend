@@ -5,8 +5,10 @@ import {
   getSingleVideoById,
   getSingleVideoByName,
   postVideo,
+  updateVideoSourceController,
 } from "./video.controller";
 import {
+  videoUpdateSchemaWithZod,
   //   searchValidation,
   videoValidationWithZod,
 } from "./video.zodValidation";
@@ -26,6 +28,11 @@ router.get(
   "/getVideoByCategory",
   //   validateRequest(searchValidation),
   getVideoByCategory
+);
+router.patch(
+  "/video/source/:movieId",
+  validateRequest(videoUpdateSchemaWithZod),
+  updateVideoSourceController
 );
 
 export const videoRoutes = router;

@@ -7,7 +7,7 @@ const videoSourceValidation = z.object({
 });
 
 const videoTypeValidation = z.object({
-  source: videoSourceValidation,
+  sources: videoSourceValidation,
   duration: z.number().positive(),
 });
 
@@ -45,4 +45,15 @@ export const videoValidationWithZod = z.object({
 
 export const searchValidation = z.object({
   name: z.string().trim().min(1),
+});
+
+export const videoSourceUpdateSchema = z.object({
+  resolution: z.enum(["480", "720", "1080", "4k"]),
+  url: z.string().url(),
+  sizeMB: z.number().positive(),
+});
+
+export const videoUpdateSchemaWithZod = z.object({
+  sources: videoSourceUpdateSchema,
+  duration: z.number().positive().optional(),
 });
