@@ -40,7 +40,7 @@ const videoSchema = new Schema<TVideoData>(
     video: { type: videoTypeSchema, required: true },
     thumbnail: { type: String, required: true },
     banner: { type: String, required: true },
-    imdbRating: { type: String },
+    imdbRating: { type: Number },
     screenshots: [{ type: String }],
     tv: { type: Boolean, required: true },
     comic: { type: Boolean, required: true },

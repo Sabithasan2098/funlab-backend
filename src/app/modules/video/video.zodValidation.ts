@@ -7,7 +7,7 @@ const videoSourceValidation = z.object({
 });
 
 const videoTypeValidation = z.object({
-  sources: videoSourceValidation,
+  sources: z.array(videoSourceValidation),
   duration: z.number().positive(),
 });
 
