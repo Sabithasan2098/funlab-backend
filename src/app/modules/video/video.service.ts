@@ -12,9 +12,7 @@ export const postVideoIntoDB = async (video: TVideoData) => {
 export const getAllVideoFromDB = async () => {
   const result = await videoModel
     .find()
-    .select(
-      "name industry category genres thumbnail banner imdbRating screenshots"
-    );
+    .select("name thumbnail banner imdbRating releaseYear category");
   return result;
 };
 
@@ -40,7 +38,7 @@ export const getSingleVideoByNameFromDB = async (name: string) => {
       banner: 1,
       imdbRating: 1,
       screenshots: 1,
-    }
+    },
   );
   return result;
 };
@@ -83,12 +81,12 @@ export const addVideoSources = async (movieId: string, payload: any) => {
     throw new Error(`Movie with ID "${movieId}" not found`);
   }
   const exists = findVideo.video.sources.find(
-    (s) => s.resolution === validateData.sources.resolution
+    (s) => s.resolution === validateData.sources.resolution,
   );
 
   if (exists) {
     throw new Error(
-      `Source with resolution "${validateData.sources.resolution}" already exists`
+      `Source with resolution "${validateData.sources.resolution}" already exists`,
     );
   }
 
