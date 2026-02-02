@@ -12,7 +12,9 @@ export const postVideoIntoDB = async (video: TVideoData) => {
 export const getAllVideoFromDB = async () => {
   const result = await videoModel
     .find()
-    .select("name thumbnail banner imdbRating releaseYear category");
+    .select(
+      "name thumbnail banner imdbRating releaseYear category genres language hindiDubbed dualAudio",
+    );
   return result;
 };
 
