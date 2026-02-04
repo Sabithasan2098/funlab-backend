@@ -14,6 +14,7 @@ const videoTypeValidation = z.object({
 export const videoValidationWithZod = z.object({
   videoData: z.object({
     name: z.string().min(1, "Name is required"),
+    fullName: z.string().min(1, "Full name is required"),
     description: z.string().optional(),
 
     industry: z.string().optional(),

@@ -17,7 +17,7 @@ const videoSourceSchema = new Schema<TVideoSource>(
       required: true,
     },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const videoTypeSchema = new Schema<TVideo>(
@@ -25,12 +25,13 @@ const videoTypeSchema = new Schema<TVideo>(
     sources: { type: [videoSourceSchema], required: true },
     duration: { type: Number, required: true },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const videoSchema = new Schema<TVideoData>(
   {
     name: { type: String, required: true, unique: true },
+    fullName: { type: String, required: true, unique: true },
     description: { type: String },
     industry: { type: String },
     category: { type: String, required: true },
@@ -53,7 +54,7 @@ const videoSchema = new Schema<TVideoData>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export const videoModel = model<TVideoData>("Videos", videoSchema);

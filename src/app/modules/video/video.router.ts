@@ -22,17 +22,17 @@ router.get("/getVideo/:id", getSingleVideoById);
 router.get(
   "/getVideo",
   //   validateRequest(searchValidation),
-  getSingleVideoByName
+  getSingleVideoByName,
 );
 router.get(
   "/getVideoByCategory",
   //   validateRequest(searchValidation),
-  getVideoByCategory
+  getVideoByCategory,
 );
 router.patch(
   "/video/source/:movieId",
   validateRequest(videoUpdateSchemaWithZod),
-  updateVideoSourceController
+  updateVideoSourceController,
 );
 
 export const videoRoutes = router;
