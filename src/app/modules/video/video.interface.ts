@@ -10,7 +10,7 @@ export type TVideo = {
 };
 
 export type TVideoData = {
-  _id?: string;
+  id: string;
 
   name: string;
   fullName: string;

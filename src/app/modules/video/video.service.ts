@@ -13,35 +13,22 @@ export const getAllVideoFromDB = async () => {
   const result = await videoModel
     .find()
     .select(
-      "name thumbnail banner imdbRating releaseYear category genres language hindiDubbed dualAudio",
+      "id name thumbnail banner imdbRating releaseYear category genres language hindiDubbed dualAudio",
     );
   return result;
 };
 
 // get single video by id----------->
 export const getSingleVideoByIdFromDB = async (id: string) => {
-  const result = await videoModel.findOne({ _id: id });
+  const result = await videoModel.findOne({ id: id });
   return result;
 };
 
 // get single video by name-------->
 export const getSingleVideoByNameFromDB = async (name: string) => {
-  const result = await videoModel.findOne(
-    {
-      name: { $regex: `^${name}$`, $options: "i" },
-    },
-    {
-      _id: 1,
-      name: 1,
-      industry: 1,
-      category: 1,
-      genres: 1,
-      thumbnail: 1,
-      banner: 1,
-      imdbRating: 1,
-      screenshots: 1,
-    },
-  );
+  const result = await videoModel.findOne({
+    name: { $regex: `^${name}$`, $options: "i" },
+  });
   return result;
 };
 

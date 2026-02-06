@@ -30,6 +30,7 @@ const videoTypeSchema = new Schema<TVideo>(
 
 const videoSchema = new Schema<TVideoData>(
   {
+    id: { type: String, required: true, unique: true },
     name: { type: String, required: true, unique: true },
     fullName: { type: String, required: true, unique: true },
     description: { type: String },
