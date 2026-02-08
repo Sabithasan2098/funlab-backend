@@ -48,9 +48,8 @@ const audioInfoSchema = new Schema<TAudioInfo>(
       required: true,
     },
 
-    dubbedLanguages: {
-      type: String,
-    },
+    hindiDubbed: { type: Boolean, required: true },
+    englishDubbed: { type: Boolean, required: true },
   },
   { _id: false },
 );
@@ -100,10 +99,6 @@ const episodeSchema = new Schema<TEpisode>(
       type: String,
       required: true,
     },
-
-    releaseDate: {
-      type: String,
-    },
   },
   { _id: false },
 );
@@ -124,7 +119,7 @@ const seasonSchema = new Schema<TSeason>(
 
     episodes: {
       type: [episodeSchema],
-      required: true,
+      default: [],
     },
   },
   { _id: false },
@@ -169,6 +164,7 @@ const seriesSchema = new Schema<TSeriesData>(
       type: [String],
       required: true,
     },
+    releaseDate: { type: String, required: true },
 
     thumbnail: {
       type: String,
@@ -189,7 +185,7 @@ const seriesSchema = new Schema<TSeriesData>(
     // ✅ Seasons array
     seasons: {
       type: [seasonSchema],
-      required: true,
+      default: [],
     },
 
     imdbRating: {

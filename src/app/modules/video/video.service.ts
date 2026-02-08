@@ -25,12 +25,12 @@ export const getSingleVideoByIdFromDB = async (id: string) => {
 };
 
 // get single video by name-------->
-export const getSingleVideoByNameFromDB = async (name: string) => {
-  const result = await videoModel.findOne({
-    name: { $regex: `^${name}$`, $options: "i" },
-  });
-  return result;
-};
+// export const getSingleVideoByNameFromDB = async (name: string) => {
+//   const result = await videoModel.findOne({
+//     name: { $regex: `^${name}$`, $options: "i" },
+//   });
+//   return result;
+// };
 
 // get single video by category-------->
 export const getVideoByCategoryFromDB = async (category: string) => {

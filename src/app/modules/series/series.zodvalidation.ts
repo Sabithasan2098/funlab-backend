@@ -16,18 +16,19 @@ const audioInfoSchemaValidation = z.object({
     "Tamil",
     "Turkish",
   ]),
-  dubbedLanguage: z.string(),
+  hindiDubbed: z.boolean(),
+  englishDubbed: z.boolean(),
 });
 
 const episodeSchemaValidation = z.object({
   id: z.string().min(3, "Id field is required"),
-  episodeNumber: z.number().min(1, "Episode field is required"),
+  episodeNumber: z.number().min(1, "Episode field is required").positive(),
 
   title: z.string().min(1, "Title field is required"),
 
   description: z.string().optional(),
 
-  duration: z.number().min(1, "Duration field is required"),
+  duration: z.number().min(1, "Duration field is required").positive(),
 
   video: z.object({
     sources: z
@@ -43,11 +44,9 @@ const episodeSchemaValidation = z.object({
 });
 
 const seasonSchemaValidation = z.object({
-  seasonNumber: z.number().min(1, "Season field is required"),
+  seasonNumber: z.number().min(1, "Season field is required").positive(),
   title: z.string().optional(),
-  episodes: z
-    .array(episodeSchemaValidation)
-    .min(1, "Episode field is required"),
+  episodes: z.array(episodeSchemaValidation),
 });
 
 export const seriesSchemaValidation = z.object({
@@ -73,9 +72,11 @@ export const seriesSchemaValidation = z.object({
   audio: audioInfoSchemaValidation,
 
   // ✅ Seasons array
-  seasons: z.array(seasonSchemaValidation).min(1, "Season field is required"),
+  seasons: z.array(seasonSchemaValidation),
 
-  imdbRating: z.number(),
+  imdbRating: z.number().positive(),
 
   views: z.number(),
 });
+
+export const updateSeriesValidation = seriesSchemaValidation.partial();

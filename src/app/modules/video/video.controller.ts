@@ -3,7 +3,6 @@ import {
   getAllVideoFromDB,
   getVideoByCategoryFromDB,
   getSingleVideoByIdFromDB,
-  getSingleVideoByNameFromDB,
   postVideoIntoDB,
   addVideoSources,
 } from "./video.service";
@@ -64,32 +63,32 @@ export const getSingleVideoById = async (req: Request, res: Response) => {
   }
 };
 
-// get video by name-------------------->
-export const getSingleVideoByName = async (req: Request, res: Response) => {
-  try {
-    const searchTerm = req.query.search as string;
+// // get video by name-------------------->
+// export const getSingleVideoByName = async (req: Request, res: Response) => {
+//   try {
+//     const searchTerm = req.query.search as string;
 
-    if (!searchTerm) {
-      res.status(400).json({
-        success: false,
-        message: "Search name is required",
-      });
-    }
+//     if (!searchTerm) {
+//       res.status(400).json({
+//         success: false,
+//         message: "Search name is required",
+//       });
+//     }
 
-    const result = await getSingleVideoByNameFromDB(searchTerm);
-    res.status(200).json({
-      success: true,
-      message: "Get video successfully",
-      data: result,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "internal server is error",
-      errorThing: error,
-    });
-  }
-};
+//     const result = await getSingleVideoByNameFromDB(searchTerm);
+//     res.status(200).json({
+//       success: true,
+//       message: "Get video successfully",
+//       data: result,
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: "internal server is error",
+//       errorThing: error,
+//     });
+//   }
+// };
 
 // get video by category-------------------->
 export const getVideoByCategory = async (req: Request, res: Response) => {
@@ -127,7 +126,7 @@ export const getVideoByCategory = async (req: Request, res: Response) => {
 
 export const updateVideoSourceController = async (
   req: Request,
-  res: Response
+  res: Response,
 ) => {
   try {
     const { movieId } = req.params;

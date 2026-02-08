@@ -3,7 +3,6 @@ import {
   getAllVideo,
   getVideoByCategory,
   getSingleVideoById,
-  getSingleVideoByName,
   postVideo,
   updateVideoSourceController,
 } from "./video.controller";
@@ -19,11 +18,11 @@ const router = express.Router();
 router.post("/postVideo", validateRequest(videoValidationWithZod), postVideo);
 router.get("/getVideos", getAllVideo);
 router.get("/getVideo/:id", getSingleVideoById);
-router.get(
-  "/getVideo",
-  //   validateRequest(searchValidation),
-  getSingleVideoByName,
-);
+// router.get(
+//   "/getVideo",
+//   //   validateRequest(searchValidation),
+//   getSingleVideoByName,
+// );
 router.get(
   "/getVideoByCategory",
   //   validateRequest(searchValidation),

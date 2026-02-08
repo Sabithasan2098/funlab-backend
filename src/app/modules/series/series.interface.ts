@@ -9,7 +9,8 @@ export type TLanguage =
 
 export type TAudioInfo = {
   originalLanguage: TLanguage; // ✅ main language
-  dubbedLanguages?: string;
+  hindiDubbed: boolean;
+  englishDubbed: boolean;
 };
 
 export type TVideoSource = {
@@ -34,8 +35,6 @@ export type TEpisode = {
   audio: TAudioInfo; // ✅ added here
 
   thumbnail: string;
-
-  releaseDate?: string;
 };
 
 export type TSeason = {
@@ -56,6 +55,7 @@ export type TSeriesData = {
   industry: string;
   category: string;
   genres: string[];
+  releaseDate: string;
 
   thumbnail: string;
   banner: string;
@@ -82,13 +82,16 @@ const series: TSeriesData = {
   industry: "Korean",
   category: "Thriller",
   genres: ["Action", "Drama"],
+  releaseDate: "2009",
 
   thumbnail: "/thumb.jpg",
   banner: "/banner.jpg",
+  imdbRating: 8.7,
 
   audio: {
     originalLanguage: "Korean",
-    dubbedLanguages: "Hindi",
+    hindiDubbed: true,
+    englishDubbed: true,
   },
 
   seasons: [
@@ -110,7 +113,8 @@ const series: TSeriesData = {
 
           audio: {
             originalLanguage: "Korean",
-            dubbedLanguages: "Hindi",
+            hindiDubbed: true,
+            englishDubbed: true,
           },
 
           thumbnail: "/ep1.jpg",
