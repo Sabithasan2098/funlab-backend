@@ -13,8 +13,8 @@ import {
 // post a video-------------------------->
 export const postSeriesVideo = async (req: Request, res: Response) => {
   try {
-    const data = req.body.videoData;
-    const result = await postSeriesVideoIntoDB(data);
+    const { seriesData } = req.body;
+    const result = await postSeriesVideoIntoDB(seriesData);
     res.status(200).json({
       success: true,
       message: "video successfully posted",
@@ -133,9 +133,9 @@ export const getSeriesVideoByCategory = async (req: Request, res: Response) => {
 export const addSeason = async (req: Request, res: Response) => {
   try {
     const { seriesId } = req.params;
-    const seasonData = req.body;
+    const { newSeason } = req.body;
 
-    const result = await addSeasonIntoSeries(seriesId, seasonData);
+    const result = await addSeasonIntoSeries(seriesId, newSeason);
 
     res.status(200).json({
       success: true,
@@ -185,13 +185,13 @@ export const addEpisode = async (req: Request, res: Response) => {
 export const addVideoSource = async (req: Request, res: Response) => {
   try {
     const { seriesId, seasonNumber, episodeId } = req.params;
-    const sourceData = req.body;
+    const { newSource } = req.body;
 
     const result = await addVideoSourceIntoEpisode(
       seriesId,
       Number(seasonNumber),
       episodeId,
-      sourceData,
+      newSource,
     );
 
     res.status(200).json({

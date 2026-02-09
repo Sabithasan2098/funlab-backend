@@ -1,6 +1,9 @@
 import express from "express";
 import { validateRequest } from "../../middleware/validateRequest";
-import { seriesSchemaValidation } from "./series.zodvalidation";
+import {
+  seriesSchemaValidation,
+  updateSeriesValidation,
+} from "./series.zodvalidation";
 import {
   addEpisode,
   addSeason,
@@ -19,10 +22,10 @@ router.post(
   validateRequest(seriesSchemaValidation),
   postSeriesVideo,
 );
-router.get("/getSeriesVideos", getAllSeriesVideo);
+router.get("/getAllSeriesVideos", getAllSeriesVideo);
 router.get("/getSeriesVideo/:id", getSingleSeriesVideoById);
 router.get(
-  "/getSeriesVideo",
+  "/getSeriesVideoByName",
   //   validateRequest(searchValidation),
   getSingleVideoByName,
 );
@@ -32,17 +35,25 @@ router.get(
   getSeriesVideoByCategory,
 );
 
-/* -----------------------------
-          Add Field Routes
------------------------------- */
-
 // 1. Add Season
-router.patch("/:seriesId/add-season", addSeason);
+router.patch(
+  "/:seriesId/add-season",
+  validateRequest(updateSeriesValidation),
+  addSeason,
+);
 
 // 2. Add Episode
-router.patch("/:seriesId/:seasonNumber/add-episode", addEpisode);
+router.patch(
+  "/:seriesId/:seasonNumber/add-episode",
+  validateRequest(updateSeriesValidation),
+  addEpisode,
+);
 
 // 3. Add Video Source (Resolution Add)
-router.patch("/:seriesId/:seasonNumber/:episodeId/add-source", addVideoSource);
+router.patch(
+  "/:seriesId/:seasonNumber/:episodeId/add-source",
+  validateRequest(updateSeriesValidation),
+  addVideoSource,
+);
 
 export const seriesVideoRoutes = router;
