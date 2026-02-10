@@ -67,7 +67,7 @@ export const getSingleSeriesVideoById = async (req: Request, res: Response) => {
 };
 
 // // get video by name-------------------->
-export const getSingleVideoByName = async (req: Request, res: Response) => {
+export const getSingleVideoOnSearch = async (req: Request, res: Response) => {
   try {
     const searchTerm = req.query.search as string;
 

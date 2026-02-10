@@ -11,7 +11,7 @@ import {
   getAllSeriesVideo,
   getSeriesVideoByCategory,
   getSingleSeriesVideoById,
-  getSingleVideoByName,
+  getSingleVideoOnSearch,
   postSeriesVideo,
 } from "./series.controller";
 
@@ -25,9 +25,9 @@ router.post(
 router.get("/getAllSeriesVideos", getAllSeriesVideo);
 router.get("/getSeriesVideo/:id", getSingleSeriesVideoById);
 router.get(
-  "/getSeriesVideoByName",
+  "/getSingleVideoOnSearch",
   //   validateRequest(searchValidation),
-  getSingleVideoByName,
+  getSingleVideoOnSearch,
 );
 router.get(
   "/getSeriesVideoByCategory",
