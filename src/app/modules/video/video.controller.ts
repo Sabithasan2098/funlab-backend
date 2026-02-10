@@ -5,6 +5,7 @@ import {
   getSingleVideoByIdFromDB,
   postVideoIntoDB,
   addVideoSources,
+  getRelatedVideosFromDB,
 } from "./video.service";
 
 // post a video-------------------------->
@@ -138,6 +139,25 @@ export const updateVideoSourceController = async (
       success: true,
       message: "Video source update successfully",
       data: update,
+    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+// get related videos------------------------------>
+export const getRelatedVideos = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const related = await getRelatedVideosFromDB(id);
+    res.status(200).json({
+      success: true,
+      message: "Video found successfully",
+      data: related,
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {

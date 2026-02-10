@@ -5,6 +5,7 @@ import {
   getSingleVideoById,
   postVideo,
   updateVideoSourceController,
+  getRelatedVideos,
 } from "./video.controller";
 import {
   videoUpdateSchemaWithZod,
@@ -33,5 +34,8 @@ router.patch(
   validateRequest(videoUpdateSchemaWithZod),
   updateVideoSourceController,
 );
+
+// get related------------------------->
+router.get("/video/:id/related", getRelatedVideos);
 
 export const videoRoutes = router;

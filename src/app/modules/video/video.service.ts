@@ -86,3 +86,26 @@ export const addVideoSources = async (movieId: string, payload: any) => {
   await findVideo.save();
   return findVideo;
 };
+
+// get related------------------------------------->
+
+export const getRelatedVideosFromDB = async (movieId: string) => {
+  const current = await videoModel.findOne({ id: movieId });
+
+  if (!current) {
+    throw new Error("Video not found");
+  }
+
+  const related = await videoModel
+    .find({
+      id: { $ne: movieId },
+      $or: [
+        { genres: { $in: current.genres } },
+        { category: current.category },
+        { industry: current.industry },
+      ],
+    })
+    .limit(10)
+    .sort({ imdbRating: -1 });
+  return related;
+};
