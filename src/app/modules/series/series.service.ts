@@ -31,11 +31,43 @@ export const getSingleSeriesVideoByIdFromDB = async (id: string) => {
 export const searchWithFallback = async (query: string) => {
   const regex = new RegExp(query, "i");
 
-  // ✅ Step 1: Search in Movie first
-  const movies = await videoModel.find({
-    $or: [{ name: regex }, { fullName: regex }, { genres: regex }],
-  });
+  if (query.toLowerCase() === "comic") {
+    const comicsOnMovies = await videoModel
+      .find({ comic: true })
+      .select(
+        "id fullName banner name description releaseYear imdbRating industry",
+      );
 
+    return {
+      type: "comic",
+      data: comicsOnMovies,
+    };
+  }
+
+  if (query.toLowerCase() === "comic") {
+    const comicsOnMovies = await SeriesModel.find({ comic: true }).select(
+      "id fullName banner name description releaseYear imdbRating industry",
+    );
+
+    return {
+      type: "comic",
+      data: comicsOnMovies,
+    };
+  }
+
+  // ✅ Step 1: Search in Movie first
+  const movies = await videoModel
+    .find({
+      $or: [
+        { name: regex },
+        { fullName: regex },
+        { genres: regex },
+        { category: regex },
+      ],
+    })
+    .select(
+      "id fullName banner name description releaseYear imdbRating industry",
+    );
   // ✅ If movie found, return immediately
   if (movies.length > 0) {
     return {
@@ -46,8 +78,15 @@ export const searchWithFallback = async (query: string) => {
 
   // ✅ Step 2: If no movie found → Search in Series
   const series = await SeriesModel.find({
-    $or: [{ name: regex }, { fullName: regex }, { genres: regex }],
-  });
+    $or: [
+      { name: regex },
+      { fullName: regex },
+      { genres: regex },
+      { category: regex },
+    ],
+  }).select(
+    "id fullName banner name description releaseYear imdbRating industry",
+  );
 
   // ✅ If series found
   if (series.length > 0) {

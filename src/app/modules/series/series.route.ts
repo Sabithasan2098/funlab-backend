@@ -14,6 +14,7 @@ import {
   getSingleVideoOnSearch,
   postSeriesVideo,
 } from "./series.controller";
+// import { searchValidation } from "../video/video.zodValidation";
 
 const router = express.Router();
 
@@ -26,7 +27,7 @@ router.get("/getAllSeriesVideos", getAllSeriesVideo);
 router.get("/getSeriesVideo/:id", getSingleSeriesVideoById);
 router.get(
   "/getSingleVideoOnSearch",
-  //   validateRequest(searchValidation),
+  // validateRequest(searchValidation),
   getSingleVideoOnSearch,
 );
 router.get(

@@ -193,6 +193,10 @@ const seriesSchema = new Schema<TSeriesData>(
       default: 0,
     },
 
+    comic: {
+      type: Boolean,
+    },
+
     views: {
       type: Number,
       default: 0,

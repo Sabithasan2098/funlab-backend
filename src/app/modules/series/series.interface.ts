@@ -66,6 +66,7 @@ export type TSeriesData = {
   seasons: TSeason[];
 
   imdbRating?: number;
+  comic: boolean;
   views?: number;
 
   createdAt?: string;
@@ -82,6 +83,7 @@ const series: TSeriesData = {
   industry: "Korean",
   category: "Thriller",
   genres: ["Action", "Drama"],
+  comic: true,
   releaseDate: "2009",
 
   thumbnail: "/thumb.jpg",

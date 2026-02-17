@@ -33,30 +33,38 @@ export const getSingleVideoByIdFromDB = async (id: string) => {
 // };
 
 // get single video by category-------->
-export const getVideoByCategoryFromDB = async (category: string) => {
+export const getVideoByIndustryFromDB = async (
+  industry: string,
+  page: number,
+  limit: number,
+) => {
+  const skip = (page - 1) * limit;
+
   const result = await videoModel.aggregate([
     {
       $match: {
-        category: {
-          $regex: `^${category}$`,
+        industry: {
+          $regex: `^${industry}$`,
           $options: "i",
         },
       },
     },
+    { $skip: skip },
+    { $limit: limit },
     {
       $project: {
         _id: 1,
+        id: 1,
         name: 1,
-        industry: 1,
-        category: 1,
-        genres: 1,
         thumbnail: 1,
-        banner: 1,
         imdbRating: 1,
-        screenshots: 1,
+        releaseYear: 1,
+        language: 1,
+        dualAudio: 1,
       },
     },
   ]);
+
   return result;
 };
 
@@ -105,6 +113,7 @@ export const getRelatedVideosFromDB = async (movieId: string) => {
         { industry: current.industry },
       ],
     })
+    .select("id fullName banner name description")
     .limit(10)
     .sort({ imdbRating: -1 });
   return related;

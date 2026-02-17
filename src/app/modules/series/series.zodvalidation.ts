@@ -68,6 +68,8 @@ export const seriesSchemaValidation = z.object({
 
   banner: z.string().min(1, "Banner field is required").url(),
 
+  comic: z.boolean(),
+
   // ✅ Audio info for whole series
   audio: audioInfoSchemaValidation,
 

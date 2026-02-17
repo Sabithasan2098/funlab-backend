@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import {
   getAllVideoFromDB,
-  getVideoByCategoryFromDB,
+  getVideoByIndustryFromDB,
   getSingleVideoByIdFromDB,
   postVideoIntoDB,
   addVideoSources,
@@ -92,39 +92,31 @@ export const getSingleVideoById = async (req: Request, res: Response) => {
 // };
 
 // get video by category-------------------->
-export const getVideoByCategory = async (req: Request, res: Response) => {
+export const getVideoByIndustry = async (req: Request, res: Response) => {
   try {
-    const searchTerm = req.query.search as string;
+    const { industry, page = "1", limit = "70" } = req.query;
 
-    if (!searchTerm) {
-      res.status(400).json({
-        success: false,
-        message: "Please fill this search term",
-      });
-    }
+    const result = await getVideoByIndustryFromDB(
+      industry as string,
+      Number(page),
+      Number(limit),
+    );
 
-    const result = await getVideoByCategoryFromDB(searchTerm);
-    if (result.length) {
-      res.status(200).json({
-        success: true,
-        message: "Get video successfully",
-        data: result,
-      });
-    } else {
-      res.status(400).json({
-        success: false,
-        message: "There was no videos",
-      });
-    }
+    res.status(200).json({
+      success: true,
+      message: "Get video successfully",
+      data: result,
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "internal server is error",
-      errorThing: error,
+      message: "Internal server error",
+      error,
     });
   }
 };
 
+// update-video-source------------------------>
 export const updateVideoSourceController = async (
   req: Request,
   res: Response,

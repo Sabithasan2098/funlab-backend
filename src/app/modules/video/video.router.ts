@@ -1,7 +1,7 @@
 import express from "express";
 import {
   getAllVideo,
-  getVideoByCategory,
+  getVideoByIndustry,
   getSingleVideoById,
   postVideo,
   updateVideoSourceController,
@@ -24,11 +24,7 @@ router.get("/getVideo/:id", getSingleVideoById);
 //   //   validateRequest(searchValidation),
 //   getSingleVideoByName,
 // );
-router.get(
-  "/getVideoByCategory",
-  //   validateRequest(searchValidation),
-  getVideoByCategory,
-);
+router.get("/getVideoByIndustry", getVideoByIndustry);
 router.patch(
   "/video/source/:movieId",
   validateRequest(videoUpdateSchemaWithZod),
