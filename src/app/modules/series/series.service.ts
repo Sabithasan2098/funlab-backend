@@ -36,7 +36,8 @@ export const searchWithFallback = async (query: string) => {
       .find({ comic: true })
       .select(
         "id fullName banner name description releaseYear imdbRating industry",
-      );
+      )
+      .limit(20);
 
     return {
       type: "comic",
@@ -45,9 +46,11 @@ export const searchWithFallback = async (query: string) => {
   }
 
   if (query.toLowerCase() === "comic") {
-    const comicsOnMovies = await SeriesModel.find({ comic: true }).select(
-      "id fullName banner name description releaseYear imdbRating industry",
-    );
+    const comicsOnMovies = await SeriesModel.find({ comic: true })
+      .select(
+        "id fullName banner name description releaseYear imdbRating industry",
+      )
+      .limit(20);
 
     return {
       type: "comic",
@@ -67,7 +70,8 @@ export const searchWithFallback = async (query: string) => {
     })
     .select(
       "id fullName banner name description releaseYear imdbRating industry",
-    );
+    )
+    .limit(20);
   // ✅ If movie found, return immediately
   if (movies.length > 0) {
     return {
@@ -84,9 +88,11 @@ export const searchWithFallback = async (query: string) => {
       { genres: regex },
       { category: regex },
     ],
-  }).select(
-    "id fullName banner name description releaseYear imdbRating industry",
-  );
+  })
+    .select(
+      "id fullName banner name description releaseYear imdbRating industry",
+    )
+    .limit(20);
 
   // ✅ If series found
   if (series.length > 0) {

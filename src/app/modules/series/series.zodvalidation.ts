@@ -50,35 +50,37 @@ const seasonSchemaValidation = z.object({
 });
 
 export const seriesSchemaValidation = z.object({
-  id: z.string().min(1, "Id field is required"),
+  seriesData: z.object({
+    id: z.string().min(1, "Id field is required"),
 
-  name: z.string().min(1, "Name field is required"),
+    name: z.string().min(1, "Name field is required"),
 
-  fullName: z.string().min(1, "Full name field is required"),
+    fullName: z.string().min(1, "Full name field is required"),
 
-  description: z.string().optional(),
+    description: z.string().optional(),
 
-  industry: z.string().min(1, "Industry field is required"),
+    industry: z.string().min(1, "Industry field is required"),
 
-  category: z.string().min(1, "Category field is required"),
+    category: z.string().min(1, "Category field is required"),
 
-  genres: z.array(z.string()).min(1, "Genres field is required"),
+    genres: z.array(z.string()).min(1, "Genres field is required"),
 
-  thumbnail: z.string().min(1, "Thumbnail field is required").url(),
+    thumbnail: z.string().min(1, "Thumbnail field is required").url(),
 
-  banner: z.string().min(1, "Banner field is required").url(),
+    banner: z.string().min(1, "Banner field is required").url(),
 
-  comic: z.boolean(),
+    comic: z.boolean(),
 
-  // ✅ Audio info for whole series
-  audio: audioInfoSchemaValidation,
+    // ✅ Audio info for whole series
+    audio: audioInfoSchemaValidation,
 
-  // ✅ Seasons array
-  seasons: z.array(seasonSchemaValidation),
+    // ✅ Seasons array
+    seasons: z.array(seasonSchemaValidation),
 
-  imdbRating: z.number().positive(),
+    imdbRating: z.number().positive(),
 
-  views: z.number(),
+    views: z.number(),
+  }),
 });
 
 export const updateSeriesValidation = seriesSchemaValidation.partial();
